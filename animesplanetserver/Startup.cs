@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using animesplanetserver.DataService.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace animesplanetserver
 {
@@ -16,6 +18,10 @@ namespace animesplanetserver
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            using (var context=new AnimesPlanetDataContext())
+            {
+                context.Database.Migrate();
+            }
         }
 
         public IConfiguration Configuration { get; }
