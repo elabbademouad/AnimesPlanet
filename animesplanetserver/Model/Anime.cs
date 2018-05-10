@@ -7,15 +7,14 @@ namespace animesplanetserver.Model
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string Couver { get; set; }
+        public string CoverPicture { get; set; }
         public string Description { get; set; }
-        public string Trailer { get; set; }
         public int NumberOfEpisodes { get; set; }
         public string Stori { get; set; }
         public DateTime AiringDate { get; set; }
-        public string OfficialSite { get; set; }
         public List<Picture> Pictures { get; set; }
         public List<Music> Musics { get; set; }
         public List<EpicMoment> EpicMoments {get;set;}
+        public List<Character> Characters {get;set;}
     }
 }

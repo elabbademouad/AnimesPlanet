@@ -45,7 +45,7 @@ namespace animesplanetserver
             app.UseCors(builder => builder.WithOrigins("http://localhost:3000")
                                           .AllowAnyMethod());
             app.UseMvc(routes =>{
-            routes.MapRoute("default", "Api/{controller=Values}/{action=Index}/{id?}");
+            routes.MapRoute("default", "Api/{controller=AnimesPlanet}/{action=Index}/{id?}");
             });
 
             
