@@ -14,7 +14,7 @@ namespace animesplanetserver.Controllers
         [HttpGet]
         public List<Anime> Index()
         {
-             List<Anime> list=null;
+            List<Anime> list=null;
             using (AnimesPlanetDataContext db=new AnimesPlanetDataContext() )
             {
                 list=db.Animes.ToList();
