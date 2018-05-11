@@ -6,44 +6,58 @@ using animesplanetserver.DataService.DataContext;
 using animesplanetserver.Model;
 namespace animesplanetserver.DataService.Repository
 {
-
     public class AnimeRepository : IRepository<AnimesPlanetDataContext, Anime>
     {
         public AnimesPlanetDataContext Context { get ; set ; }
 
+        public AnimeRepository()
+        {
+            this.Context=new AnimesPlanetDataContext();
+        }
         public void Add(Anime entity)
         {
-            throw new NotImplementedException();
+            Context.SaveChanges();
+            Context.Animes.Add(entity);
         }
 
-        public void AddRange(List<Anime> entity)
+        public void AddRange(List<Anime> entitys)
         {
-            throw new NotImplementedException();
+            Context.Animes.AddRange(entitys);
+            Context.SaveChanges();            
         }
 
         public void Delete(Anime entity)
         {
-            throw new NotImplementedException();
+            Context.Animes.Attach(entity);
+            Context.Animes.Remove(entity);
+            Context.SaveChanges();
         }
 
-        public void DeleteRange(List<Anime> entity)
+        public void DeleteRange(List<Anime> entitys)
         {
-            throw new NotImplementedException();
+            Context.Animes.AttachRange(entitys);
+            Context.RemoveRange(entitys);
+            Context.SaveChanges();
         }
 
         public void DeleteWhere(Expression<Func<Anime, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var entitys=Context.Animes.Where(predicate);
+            if(entitys!=null)
+            {
+                Context.Animes.RemoveRange(entitys);
+                Context.SaveChanges();
+            }
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Context.Dispose();
         }
 
         public void Edit(Anime entity)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void EditRange(List<Anime> entity)
@@ -53,12 +67,12 @@ namespace animesplanetserver.DataService.Repository
 
         public IQueryable<Anime> GetAll()
         {
-            throw new NotImplementedException();
+            return this.Context.Animes;
         }
 
         public IQueryable<Anime> GetWhere(Expression<Func<Anime, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return this.Context.Animes.Where(predicate);
         }
     }
 }
